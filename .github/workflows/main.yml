@@ -23,7 +23,6 @@ jobs:
       run: |
         pip install mlflow pandas scikit-learn numpy
 
-    - name: Run preprocessing script script
+    - name: Run preprocessing script
       run: |
-        cd MLProject
         python preprocessing/automate_RamadhaniAri.py
