@@ -1,4 +1,4 @@
-name: MLflow CI - Diabetes Classification
+name: MLflow CI - Diabetes Prediction
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
       run: |
         pip install mlflow pandas scikit-learn numpy
 
-    - name: Run training script
+    - name: Run preprocessing script script
       run: |
         cd MLProject
-        python modelling.py
+        python preprocessing/automate_RamadhaniAri.py
