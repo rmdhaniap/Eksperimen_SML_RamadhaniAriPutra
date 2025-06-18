@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 # Memuat dataset
 df = pd.read_csv('diabetes_raw.csv')
@@ -15,7 +15,7 @@ Q1 = df[num_features].quantile(0.25)
 Q3 = df[num_features].quantile(0.75)
 IQR = Q3 - Q1
 
-# Filter outlier
+# Filter baris tanpa outlier
 filter_outliers = ~((df[num_features] < (Q1 - 1.5 * IQR)) |
                     (df[num_features] > (Q3 + 1.5 * IQR))).any(axis=1)
 
@@ -26,10 +26,15 @@ df = df[filter_outliers]
 scaler = StandardScaler()
 df[num_features] = scaler.fit_transform(df[num_features])
 
+# Encode fitur kategorikal
+label_encoder = LabelEncoder()
+for col in cat_features:
+    df[col] = label_encoder.fit_transform(df[col])
+
 # Pastikan folder 'preprocessing' tersedia
 os.makedirs('preprocessing', exist_ok=True)
 
-# Simpan dataset hasil preprocessing
-df.to_csv('preprocessing/diabetes_preprocessing.csv', index=False)
+# Simpan hasil preprocessing ke folder
+df.to_csv('preprocessing/diabetes_data_preprocessing.csv', index=False)
 
-print("✅ Preprocessing selesai. File disimpan di 'preprocessing/diabetes_preprocessing.csv'")
+print("✅ Preprocessing selesai. File disimpan di 'preprocessing/obesity_data_preprocessing.csv'")
