@@ -28,9 +28,12 @@ jobs:
     - name: Run preprocessing script
       run: python preprocessing/automate_RamadhaniAri.py
 
+    - name: List preprocessing files
+      run: ls -l preprocessing/
+
     - name: Upload processed datasets
       uses: actions/upload-artifact@v4
       with:
-          name: processed-diabetes-dataset
-          path: |
-            preprocessing/diabetes_data_preprocessing.csv
+        name: processed-diabetes-dataset
+        path: |
+          preprocessing/diabetes_preprocessing.csv
