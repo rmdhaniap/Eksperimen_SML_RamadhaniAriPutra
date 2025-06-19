@@ -37,4 +37,4 @@ os.makedirs('preprocessing', exist_ok=True)
 # Simpan hasil preprocessing ke folder
 df.to_csv('diabetes_preprocessing.csv', index=False)
 
-print("✅ Preprocessing selesai. Dataset Berhasil Disimpan'")
+print("✅ Preprocessing selesai. Dataset Berhasil Disimpan")
